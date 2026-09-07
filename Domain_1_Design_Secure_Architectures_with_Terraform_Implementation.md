@@ -615,7 +615,18 @@ resource "aws_iam_user_group_membership" "membership" {
   ]
 }
 ```
+Alternate Approach
+``` hcl
+resource "aws_iam_group_membership" "team_membership" {
+  name = "tf-developer-group-membership"
 
+  group = aws_iam_group.example_group.name
+
+  users = [
+    aws_iam_user.example_user.name,
+  ]
+}
+```
 Verify:
 
 ``` bash
