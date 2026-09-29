@@ -55,6 +55,50 @@ The lab uses:
    -------------------------        -------------------------
             |                                  |
             +========== Site-to-Site VPN ======+
+
+
+                    AWS ACCOUNT A
+              AWS VPC / AWS VPN SIDE
+                 
+        VPC-A: 10.10.0.0/16
+        ┌───────────────────────────┐
+        │                           │
+        │  Private Subnet           │
+        │  10.10.1.0/24             │
+        │                           │
+        │  EC2-A                    │
+        │  10.10.1.10               │
+        │                           │
+        └─────────────┬─────────────┘
+                      │
+                      │ Route
+                      ▼
+              Virtual Private Gateway
+                      │
+                      │
+             AWS Site-to-Site VPN
+                IPsec / IKE
+                      │
+                      │ Internet
+                      │
+                      ▼
+              Public Elastic IP
+                      │
+        ┌─────────────┴─────────────┐
+        │                           │
+        │       AWS ACCOUNT B       │
+        │   Simulated On-Premises   │
+        │                           │
+        │  VPC-B: 10.20.0.0/16     │
+        │                           │
+        │  Ubuntu EC2               │
+        │  strongSwan               │
+        │  Customer Gateway         │
+        │                           │
+        │  Private Web EC2          │
+        │  10.20.1.10               │
+        │                           │
+        └───────────────────────────┘
 ```
 
 ## Traffic path
